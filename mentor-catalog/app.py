@@ -22,7 +22,7 @@ class Handler(BaseHTTPRequestHandler):
             body = {"version": os.getenv("APP_VERSION", "dev")}
         elif path == "/items":
             try:
-                body = json.loads(Path(os.getenv("DATA_FILE", "demo/items.json")).read_text())
+                body = json.loads(Path(os.getenv("DATA_FILE", "/var/lib/mentor-catalog/items.json")).read_text())
                 if not isinstance(body, list):
                     raise ValueError("Dataset must be a JSON array")
             except (OSError, ValueError, UnicodeError):
